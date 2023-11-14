@@ -72,6 +72,10 @@ const InstitutionSchema={
 class Institution extends Model{
   static associate(models){
     this.belongsTo(models.User, { as: 'user' });
+    this.hasMany(models.Contrato,{
+      as:'contratos',
+      foreignKey:'institutionId'
+     });
   }
   static config(sequelize){
     return{
