@@ -2,6 +2,7 @@ const boom = require('@hapi/boom');
 // const getConnection=require('../libs/postgres');
 // const pool=require('../libs/postgres.pool');
 const{models}=require('./../libs/sequelize');
+
 class UserService {
   constructor() {
     // this.pool=pool;
@@ -19,10 +20,10 @@ class UserService {
   }
 
   async findOne(id) {
-    const user=await models.User.findByPk(id);
-    if(!user){
-      throw boom.notFound('user not found');
-    }
+    const user=await models.User.findByPk(id,{
+      include:['institutions']
+    });
+
     return user;
   }
 

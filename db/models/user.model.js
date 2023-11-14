@@ -18,6 +18,11 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.STRING
   },
+  role:{
+    allowNull:false,
+    type:DataTypes.STRING,
+    defaultValue:'admin'
+  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE, //tipo fecha
@@ -27,8 +32,11 @@ const UserSchema = {
 }
 
 class User extends Model {
-  static associate() {
-    // associate
+  static associate(models) {
+   this.hasMany(models.Institution,{
+    as:'institutions',
+    foreignKey:'userId'
+   })
   }
 
   static config(sequelize) {
