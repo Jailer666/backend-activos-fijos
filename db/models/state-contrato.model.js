@@ -1,7 +1,7 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
 
-const STATE_CONTRATO_TABLE = 'state_contrato';
+const STATE_CONTRATO_TABLE = 'state_contratos';
 
 const StateContratoSchema={
   id: {
@@ -22,8 +22,8 @@ const StateContratoSchema={
   }
 }
 
-class State_contrato extends Model{
-  static associate(models){
+class StateContrato extends Model{
+  static associate(){
     this.hasMany(models.Contrato,{
       as:'contratos',
       foreignKey:'stateContratoId'
@@ -33,10 +33,10 @@ class State_contrato extends Model{
     return{
       sequelize,
       tableName: STATE_CONTRATO_TABLE,
-      modelName: 'State_contrato',
+      modelName: 'StateContrato',
       timestamps: false
     }
   }
 }
 
-module.exports={State_contrato,StateContratoSchema,STATE_CONTRATO_TABLE}
+module.exports={StateContrato,StateContratoSchema,STATE_CONTRATO_TABLE}

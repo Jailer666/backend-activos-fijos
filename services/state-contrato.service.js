@@ -5,10 +5,7 @@ const {models}=require('../libs/sequelize');
 class StateContratoService {
 
   constructor(){
-    // this.institutions = [];
-    // this.generate();
-    // this.pool=pool;
-    // this.pool.on('error',(err)=>console.log(err));
+
   }
 
   async create(data) {
@@ -17,8 +14,7 @@ class StateContratoService {
   }
 
   async find() {
-    // const query='SELECT *FROM usuarios';
-    // const {data}=await sequelize.query(query);
+
     const rta = await models.StateContrato.findAll();
     return rta;
   }
@@ -37,8 +33,8 @@ class StateContratoService {
   }
 
   async delete(id) {
-    const StateContrato = await this.findOne(id);
-    await StateContrato.destroy();
+    const stateContrato = await this.findOne(id);
+    await stateContrato.destroy();
     return { id };
   }
 }
