@@ -9,6 +9,11 @@ const UserSchema = {
     primaryKey: true,//clave primaria
     type: DataTypes.INTEGER//tipo entero
   },
+  username: {
+    allowNull: false,
+    type: DataTypes.STRING,//tipo cadena de texto
+    unique: true, //valor unico
+  },
   email: {
     allowNull: false,
     type: DataTypes.STRING,//tipo cadena de texto

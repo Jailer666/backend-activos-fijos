@@ -23,7 +23,7 @@ const StateContratoSchema={
 }
 
 class StateContrato extends Model{
-  static associate(){
+  static associate(models){
     this.hasMany(models.Contrato,{
       as:'contratos',
       foreignKey:'stateContratoId'

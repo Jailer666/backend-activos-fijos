@@ -62,6 +62,7 @@ class Contrato extends Model {
   static associate(models) {
     this.belongsTo(models.Institution, { as: 'institution' });
     this.belongsTo(models.StateContrato, { as: 'state_contrato' });
+    this.hasMany(models.File,{as:'files',foreignKey:'contratoId'});
   }
   static config(sequelize) {
     return {

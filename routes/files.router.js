@@ -1,40 +1,40 @@
 const express=require('express');
-const ContratoService = require('./../services/contrato.service');
+const FileService = require('./../services/file.service');
 
 const validatorHandler = require('./../middlewares/validator.handler');
-const { updateContratoSchema, createContratoSchema, getContratoSchema } = require('./../schemas/contrato.schema');
+const { updateFileSchema, createFileSchema, getFileSchema } = require('./../schemas/file.schema');
 
 const router = express.Router();
-const service = new ContratoService();
+const service = new FileService();
 
 router.get('/',async (req,res,next)=>{
   try{
-    const contratos = await service.find();
-    res.json(contratos);
+    const files = await service.find();
+    res.json(files);
   }catch(error){
     next(error);
   }
 });
 
 router.get('/:id',
-validatorHandler(getContratoSchema, 'params'),
+validatorHandler(getFileSchema, 'params'),
 async (req,res,next)=>{
   try{
     const {id} = req.params;
-    const contrato=await service.findOne(id);
-    res.json(contrato);
+    const file=await service.findOne(id);
+    res.json(file);
   }catch(error){
     next(error);
   }
 });
 
 router.post('/',
-validatorHandler(createContratoSchema, 'body'),
+validatorHandler(createFileSchema, 'body'),
 async (req,res,next)=>{
   try{
     const body = req.body;
-    const newContrato = await service.create(body);
-    res.status(201).json(newContrato);
+    const newFile = await service.create(body);
+    res.status(201).json(newFile);
   }catch(error){
     next(error);
   }
@@ -42,14 +42,14 @@ async (req,res,next)=>{
 );
 
 router.patch('/:id',
-  validatorHandler(getContratoSchema, 'params'),
-  validatorHandler(updateContratoSchema, 'body'),
+  validatorHandler(getFileSchema, 'params'),
+  validatorHandler(updateFileSchema, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
       const body = req.body;
-      const contrato = await service.update(id, body);
-      res.json(contrato);
+      const file = await service.update(id, body);
+      res.json(file);
     } catch (error) {
       next(error);
     }
@@ -57,7 +57,7 @@ router.patch('/:id',
 );
 
 router.delete('/:id',
-  validatorHandler(getContratoSchema, 'params'),
+  validatorHandler(getFileSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;

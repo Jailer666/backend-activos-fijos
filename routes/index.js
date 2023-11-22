@@ -4,10 +4,10 @@ const productsRouter = require('./products.router');
 const categoriesRouter = require('./categories.router');
 const usersRouter = require('./users.router');
 const orderRouter = require('./orders.router');
-const institutionRouter = require('./institutions.router');
-const contratoRouter = require('./contratos.router');
-const stateContratoRouter = require('./state-contrato.router');
-
+const institutionsRouter = require('./institutions.router');
+const contratosRouter = require('./contratos.router');
+const stateContratosRouter = require('./state-contrato.router');
+const filesRouter=require('./files.router');
 function routerApi(app) {
   const router = express.Router();
   app.use('/api/v1', router);
@@ -15,9 +15,10 @@ function routerApi(app) {
   router.use('/categories', categoriesRouter);
   router.use('/users', usersRouter);
   router.use('/orders', orderRouter);
-  router.use('/institutions', institutionRouter);
-  router.use('/contratos', contratoRouter);
-  router.use('/state-contratos', stateContratoRouter);
+  router.use('/institutions', institutionsRouter);
+  router.use('/contratos', contratosRouter);
+  router.use('/state-contratos', stateContratosRouter);
+  router.use('/files', filesRouter);
 }
 
 module.exports = routerApi;

@@ -2,7 +2,7 @@ const express=require('express');
 const StateContratoService = require('./../services/contrato.service');
 
 const validatorHandler = require('./../middlewares/validator.handler');
-const { updateStateContratoSchema, createStateContratoSchema, getStateContratoSchema } = require('./../schemas/institution.schema');
+const { updateStateContratoSchema, createStateContratoSchema, getStateContratoSchema } = require('./../schemas/state-contrato.schema');
 
 const router = express.Router();
 const service = new StateContratoService();
