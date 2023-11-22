@@ -1,5 +1,5 @@
 const express=require('express');
-const StateContratoService = require('./../services/contrato.service');
+const StateContratoService = require('./../services/state-contrato.service');
 
 const validatorHandler = require('./../middlewares/validator.handler');
 const { updateStateContratoSchema, createStateContratoSchema, getStateContratoSchema } = require('./../schemas/state-contrato.schema');
@@ -33,8 +33,8 @@ validatorHandler(createStateContratoSchema, 'body'),
 async (req,res,next)=>{
   try{
     const body = req.body;
-    const newContrato = await service.create(body);
-    res.status(201).json(newContrato);
+    const newStateContrato = await service.create(body);
+    res.status(201).json(newStateContrato);
   }catch(error){
     next(error);
   }

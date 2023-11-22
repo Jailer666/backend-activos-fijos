@@ -16,17 +16,20 @@ const ContratoSchema = {
     allowNull: false,
     type: DataTypes.STRING
   },
-  start_date: {
+  startDate: {
     allowNull: false,
-    type: DataTypes.DATE
+    type: DataTypes.DATE,
+    field:'start_date'
   },
-  finish_date: {
+  finishDate: {
     allowNull: false,
-    type: DataTypes.DATE
+    type: DataTypes.DATE,
+    field:'finish_date'
   },
-  cant_police: {
+  cantPolice: {
     allowNull: false,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
+    field:'cant_police'
   },
   createdAt: {
     allowNull: false,

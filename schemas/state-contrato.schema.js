@@ -8,7 +8,6 @@ const createStateContratoSchema = Joi.object({
 });
 
 const updateStateContratoSchema = Joi.object({
-  number: name.required(),
   name:name.required()
 });
 

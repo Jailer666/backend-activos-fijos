@@ -8,6 +8,8 @@ const institutionsRouter = require('./institutions.router');
 const contratosRouter = require('./contratos.router');
 const stateContratosRouter = require('./state-contrato.router');
 const filesRouter=require('./files.router');
+const seguimientosRouter=require('./seguimientos.router');
+
 function routerApi(app) {
   const router = express.Router();
   app.use('/api/v1', router);
@@ -19,6 +21,7 @@ function routerApi(app) {
   router.use('/contratos', contratosRouter);
   router.use('/state-contratos', stateContratosRouter);
   router.use('/files', filesRouter);
+  router.use('/seguimientos', seguimientosRouter);
 }
 
 module.exports = routerApi;
