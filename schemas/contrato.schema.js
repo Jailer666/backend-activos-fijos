@@ -7,6 +7,9 @@ const finishDate = Joi.date();
 const cantPolice=Joi.number().integer();
 const stateContratoId=Joi.number().integer();
 const institutionId=Joi.number().integer();
+//query
+const limit = Joi.number().integer();
+const offset= Joi.number().integer();
 
 const createContratoSchema = Joi.object({
   number: number.required(),
@@ -30,4 +33,9 @@ const getContratoSchema = Joi.object({
   id: id.required(),
 });
 
-module.exports = { createContratoSchema, updateContratoSchema, getContratoSchema }
+const queryContratoSchema = Joi.object({
+  limit,
+  offset,
+  stateContratoId
+});
+module.exports = { createContratoSchema, updateContratoSchema, getContratoSchema, queryContratoSchema}

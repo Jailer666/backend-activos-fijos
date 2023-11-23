@@ -1,5 +1,6 @@
 // const { faker } = require('@faker-js/faker');
 // const boom = require('@hapi/boom');
+
 const {models}=require('../libs/sequelize');
 
 class ContratosService {
@@ -16,10 +17,22 @@ class ContratosService {
     return newContrato;
   }
 
-  async find() {
+  async find(query) {
     // const query='SELECT *FROM usuarios';
     // const {data}=await sequelize.query(query);
-    const rta = await models.Contrato.findAll();
+    const options={
+      include:['institution'],where:{}
+
+    }
+    const {limit,offset,stateContratoId}=query;
+    if(limit && offset){
+      options.limit=limit;
+      options.offset=offset;
+    }
+    if(stateContratoId){
+      options.where.stateContratoId=stateContratoId;
+    }
+    const rta = await models.Contrato.findAll(options);
     return rta;
   }
   async findOne(id) {
@@ -29,7 +42,6 @@ class ContratosService {
 
     return contrato;
   }
-
   async update(id, changes) {
     const contrato = await this.findOne(id);
     const rta = await contrato.update(changes);

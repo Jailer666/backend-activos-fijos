@@ -2,14 +2,14 @@ const express=require('express');
 const SeguimientoService = require('./../services/seguimiento.service');
 
 const validatorHandler = require('./../middlewares/validator.handler');
-const { getSeguimientoSchema,createSeguimientoSchema,addItemSchema } = require('./../schemas/seguimiento.schema');
+const { getSeguimientoSchema,createSeguimientoSchema,addItemSchema,querySeguimientoSchema } = require('./../schemas/seguimiento.schema');
 
 const router = express.Router();
 const service = new SeguimientoService();
 
-router.get('/',async (req,res,next)=>{
+router.get('/',validatorHandler(querySeguimientoSchema,'query'),async (req,res,next)=>{
   try{
-    const seguimientos = await service.find();
+    const seguimientos = await service.find(req.query);
     res.json(seguimientos);
   }catch(error){
     next(error);

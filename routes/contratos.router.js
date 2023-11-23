@@ -2,14 +2,14 @@ const express=require('express');
 const ContratoService = require('./../services/contrato.service');
 
 const validatorHandler = require('./../middlewares/validator.handler');
-const { updateContratoSchema, createContratoSchema, getContratoSchema } = require('./../schemas/contrato.schema');
+const { updateContratoSchema, createContratoSchema, getContratoSchema, queryContratoSchema } = require('./../schemas/contrato.schema');
 
 const router = express.Router();
 const service = new ContratoService();
 
-router.get('/',async (req,res,next)=>{
+router.get('/',validatorHandler(queryContratoSchema,'query'),async (req,res,next)=>{
   try{
-    const contratos = await service.find();
+    const contratos = await service.find(req.query);
     res.json(contratos);
   }catch(error){
     next(error);

@@ -1,5 +1,6 @@
 // const { faker } = require('@faker-js/faker');
 // const boom = require('@hapi/boom');
+const { Op } = require('sequelize');
 const { models } = require('../libs/sequelize');
 
 class SeguimientoService {
@@ -16,9 +17,19 @@ class SeguimientoService {
     const newItem = await models.ContratoSeguimiento.create(data);
     return newItem;
   }
-  async find() {
-
-    const rta = await models.Seguimiento.findAll();
+  async find(query) {
+    const options={
+      include: ['items'],
+      where:{}
+    }
+    const {date_min,date_max}=query;
+    if(date_min && date_max){
+      options.where.date={
+        [Op.gte]:date_min,
+        [Op.lte]:date_max
+      }
+    }
+    const rta = await models.Seguimiento.findAll(options);
     return rta;
   }
   async findOne(id) {

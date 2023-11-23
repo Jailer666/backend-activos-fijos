@@ -8,14 +8,19 @@ class UserService {
     // this.pool=pool;
     // this.pool.on('error',(err)=>console.log(err));
   }
-
   async create(data) {
     const newUser=await models.User.create(data);
     return newUser;
   }
 
-  async find() {
-    const rta=await models.User.findAll();
+  async find(query) {
+    const options={include:['institutions']}
+    const {limit, offset}=query;
+    if(limit && offset){
+      options.limit=limit;
+      options.offset=offset;
+    }
+    const rta=await models.User.findAll(options);
     return rta;
   }
 

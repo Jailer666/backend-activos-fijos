@@ -2,14 +2,14 @@ const express = require('express');
 
 const UserService = require('./../services/user.service');
 const validatorHandler = require('./../middlewares/validator.handler');
-const { updateUserSchema, createUserSchema, getUserSchema } = require('./../schemas/user.schema');
+const { updateUserSchema, createUserSchema, getUserSchema, queryUserSchema } = require('./../schemas/user.schema');
 
 const router = express.Router();
 const service = new UserService();
 
-router.get('/', async (req, res, next) => {
+router.get('/', validatorHandler(queryUserSchema,'query'),async (req, res, next) => {
   try {
-    const categories = await service.find();
+    const categories = await service.find(req.query);
     res.json(categories);
   } catch (error) {
     next(error);

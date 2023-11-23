@@ -4,6 +4,10 @@ const id=Joi.number().integer();
 //para seguimientos
 const date=Joi.date();
 
+//query
+const date_min=Joi.date();
+const date_max=Joi.date();
+
 //para contratos_seguiminetos
 const seguimientoId=Joi.number().integer();
 const contratoId=Joi.number().integer();
@@ -24,6 +28,14 @@ const addItemSchema=Joi.object({
   amount: amount.required()
 });
 
+const querySeguimientoSchema=Joi.object({
+  date_min,
+  date_max:date_max.when('date_min',
+  {
+    is:Joi.date().required(),
+    then:Joi.required()
+  })
+});
 
-module.exports={getSeguimientoSchema,createSeguimientoSchema,addItemSchema};
+module.exports={getSeguimientoSchema,createSeguimientoSchema,addItemSchema, querySeguimientoSchema};
 
