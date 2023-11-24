@@ -19,17 +19,6 @@ const SeguimientoSchema={
     type: DataTypes.DATE,
     field: 'created_at',
     defaultValue: Sequelize.NOW,
-  },
-  totalPolice: {
-    type: DataTypes.VIRTUAL,
-    get(){
-      if(this.items.length>0){
-        return this.items.reduce((total,item)=>{
-          return total+=item.cantPolice;
-        },0)
-      }
-      return 0;
-    }
   }
 }
 

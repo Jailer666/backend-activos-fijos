@@ -11,7 +11,7 @@ const date_max=Joi.date();
 //para contratos_seguiminetos
 const seguimientoId=Joi.number().integer();
 const contratoId=Joi.number().integer();
-const amount=Joi.number().integer().min(1);
+
 
 const getSeguimientoSchema=Joi.object({
   id:id.required(),
@@ -24,8 +24,7 @@ const createSeguimientoSchema=Joi.object({
 
 const addItemSchema=Joi.object({
   seguimientoId:seguimientoId.required(),
-  contratoId:contratoId.required(),
-  amount: amount.required()
+  contratoId:contratoId.required()
 });
 
 const querySeguimientoSchema=Joi.object({

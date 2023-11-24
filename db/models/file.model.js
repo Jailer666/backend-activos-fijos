@@ -9,7 +9,6 @@ const FileSchema = {
     autoIncrement: true,//autoincrementable
     primaryKey: true,//clave primaria
     type: DataTypes.INTEGER,//tipo entero
-    unique: true //valor unico
   },
   type: {
     allowNull: false,

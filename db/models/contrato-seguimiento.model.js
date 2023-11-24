@@ -19,10 +19,6 @@ const ContratoSeguimientoSchema={
     field: 'created_at',
     defaultValue: Sequelize.NOW,
   },
-  amount:{
-    allowNull:false,
-    type:DataTypes.INTEGER
-  },
   contratoId: {
     field: 'contrato_id',
     allowNull: false,

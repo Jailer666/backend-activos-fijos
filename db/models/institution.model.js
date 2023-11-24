@@ -30,7 +30,8 @@ const InstitutionSchema={
   gerenteCi:{
     field:'gerente_ci',
     allowNull:false,
-    type:DataTypes.STRING
+    type:DataTypes.STRING,
+    unique:true
   },
   subgerente:{
     allowNull:true,
@@ -39,7 +40,8 @@ const InstitutionSchema={
   subgerenteCi:{
     field:'subgerente_ci',
     allowNull:true,
-    type:DataTypes.STRING
+    type:DataTypes.STRING,
+    unique:true
   },
   description:{
     allowNull:true,

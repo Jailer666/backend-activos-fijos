@@ -10,11 +10,11 @@ const ContratoSchema = {
     autoIncrement: true,//autoincrementable
     primaryKey: true,//clave primaria
     type: DataTypes.INTEGER,//tipo entero
-    unique: true //valor unico
   },
   number: {
     allowNull: false,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    unique:true
   },
   startDate: {
     allowNull: false,

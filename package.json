@@ -7,7 +7,7 @@
     "dev": "nodemon index.js",
     "start": "node index.js",
     "lint": "eslint",
-    "migrations:generate":"sequelize-cli migration:generate --name",
+    "migrations:generate": "sequelize-cli migration:generate --name",
     "migrations:run": "sequelize-cli db:migrate",
     "migrations:revert": "sequelize-cli db:migrate:undo",
     "migrations:delete": "sequelize-cli db:migrate:undo:all"
@@ -26,6 +26,7 @@
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
     "@hapi/boom": "^9.1.4",
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.17.1",
