@@ -35,6 +35,18 @@ class ContratosService {
     const rta = await models.Contrato.findAll(options);
     return rta;
   }
+  async findByUser(userId) {
+    const orders = await models.Contrato.findAll({
+      where: { '$institution.user.id$': userId },
+      include: [
+        {
+          association: 'institution',
+          include: ['user']
+        }
+      ]
+    });
+    return orders;
+  }
   async findOne(id) {
     const contrato = await models.Contrato.findByPk(id,{
       include:['isntitution']

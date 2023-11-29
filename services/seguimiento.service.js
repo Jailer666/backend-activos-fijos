@@ -17,16 +17,17 @@ class SeguimientoService {
     const newItem = await models.ContratoSeguimiento.create(data);
     return newItem;
   }
+
   async find(query) {
-    const options={
+    const options = {
       include: ['items'],
-      where:{}
+      where: {}
     }
-    const {date_min,date_max}=query;
-    if(date_min && date_max){
-      options.where.date={
-        [Op.gte]:date_min,
-        [Op.lte]:date_max
+    const { date_min, date_max } = query;
+    if (date_min && date_max) {
+      options.where.date = {
+        [Op.gte]: date_min,
+        [Op.lte]: date_max
       }
     }
     const rta = await models.Seguimiento.findAll(options);

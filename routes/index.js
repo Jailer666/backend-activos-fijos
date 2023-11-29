@@ -9,6 +9,8 @@ const contratosRouter = require('./contratos.router');
 const stateContratosRouter = require('./state-contrato.router');
 const filesRouter=require('./files.router');
 const seguimientosRouter=require('./seguimientos.router');
+const authRouter = require('./auth.router');
+const profileRouter = require('./profile.router');
 
 function routerApi(app) {
   const router = express.Router();
@@ -22,6 +24,8 @@ function routerApi(app) {
   router.use('/state-contratos', stateContratosRouter);
   router.use('/files', filesRouter);
   router.use('/seguimientos', seguimientosRouter);
+  router.use('/auth', authRouter);
+  router.use('/profile', profileRouter);
 }
 
 module.exports = routerApi;
