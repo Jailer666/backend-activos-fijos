@@ -21,7 +21,7 @@ class ContratosService {
     // const query='SELECT *FROM usuarios';
     // const {data}=await sequelize.query(query);
     const options={
-      include:['institution'],where:{}
+      include:['institution','files','stateContrato'],where:{}
 
     }
     const {limit,offset,stateContratoId}=query;
@@ -49,7 +49,7 @@ class ContratosService {
   }
   async findOne(id) {
     const contrato = await models.Contrato.findByPk(id,{
-      include:['isntitution']
+      include:['institution','files','stateContrato']
     });
 
     return contrato;

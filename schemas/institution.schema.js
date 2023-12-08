@@ -18,7 +18,7 @@ const createInstitutionSchema = Joi.object({
   address: address.required(),
   gerente:gerente.required(),
   gerenteCi:gerenteCi.required(),
-  subgerente,
+  subgerente ,
   subgerenteCi,
   description,
   email: email.required(),
@@ -31,8 +31,11 @@ const updateInstitutionSchema = Joi.object({
   address:address,
   gerente:gerente,
   gerenteCi:gerenteCi,
+  subgerente:subgerente,
+  subgerenteCi:subgerenteCi,
+  description:description,
   email: email,
-  userId
+  userId,
 });
 
 const getInstitutionSchema = Joi.object({
