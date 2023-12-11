@@ -40,10 +40,10 @@ class UserService {
 
     return user;
   }
-
   async update(id, changes) {
+    const hash = await bcrypt.hash(changes.password, 10);
     const user = await this.findOne(id);
-    const rta = await user.update(changes);
+    const rta = await user.update({ ...changes, password: hash});
     return rta;
   }
 
