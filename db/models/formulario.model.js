@@ -72,8 +72,8 @@ const FormularioSchema = {
     field: 'created_at',
     defaultValue: Sequelize.NOW,
   },
-  usuarioId: {
-    field: 'usuario_id',
+  userId: {
+    field: 'user_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {

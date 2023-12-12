@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const {FORMULARIO_TABLE}=require('./formulario.model');
+const { FORMULARIO_TABLE } = require('./formulario.model');
 
 const DETALLE_FORMULARIO_TABLE = 'detalles_formulario';
 
@@ -14,7 +14,7 @@ const DetalleFormularioSchema = {
     allowNull: true,
     type: DataTypes.STRING,
     field: 'cod_formulario',
-    unique:true
+    unique: true,
   },
   createdAt: {
     allowNull: false,
@@ -32,12 +32,15 @@ const DetalleFormularioSchema = {
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL',
-  }
+  },
 };
 
 class DetalleFormulario extends Model {
-  static associate(models) {
-    this.hasMany(models.ActivoFijo, { as: 'activosFijos', foreignKey: 'detalleFormularioId' });
+  static associate() {
+    // this.hasMany(models.ActivoFijo, {
+    //   as: 'activosFijos',
+    //   foreignKey: 'detalleFormularioId',
+    // });
   }
   static config(sequelize) {
     return {
@@ -49,4 +52,8 @@ class DetalleFormulario extends Model {
   }
 }
 
-module.exports = { DetalleFormulario, DetalleFormularioSchema, DETALLE_FORMULARIO_TABLE };
+module.exports = {
+  DetalleFormulario,
+  DetalleFormularioSchema,
+  DETALLE_FORMULARIO_TABLE,
+};
