@@ -10,6 +10,10 @@ const DetalleFormularioSchema = {
     primaryKey: true, //clave primaria
     type: DataTypes.INTEGER, //tipo entero
   },
+  tipo: {
+    allowNull: true,
+    type: DataTypes.STRING,
+  },
   codFormulario: {
     allowNull: true,
     type: DataTypes.STRING,
@@ -36,12 +40,12 @@ const DetalleFormularioSchema = {
 };
 
 class DetalleFormulario extends Model {
-  static associate(models) {
-    this.belongsTo(models.Formulario, { as: 'formulario' });
-    this.hasMany(models.ActivoFijo, {
-      as: 'activos',
-      foreignKey: 'detalleFormularioId',
-    });
+  static associate() {
+    // this.belongsTo(models.Formulario, { as: 'formulario' });
+    // this.hasMany(models.ActivoFijo, {
+    //   as: 'activosFijos',
+    //   foreignKey: 'detalleFormularioId',
+    // });
   }
   static config(sequelize) {
     return {

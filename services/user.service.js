@@ -17,7 +17,7 @@ class UserService {
   }
 
   async find(query) {
-    const options = { include: ['institutions'] }
+    const options = { include: ['formularios'] }
     const { limit, offset } = query;
     if (limit && offset) {
       options.limit = limit;
@@ -35,9 +35,8 @@ class UserService {
   }
   async findOne(id) {
     const user = await models.User.findByPk(id, {
-      include: ['institutions']
+      include: ['formularios']
     });
-
     return user;
   }
   async update(id, changes) {

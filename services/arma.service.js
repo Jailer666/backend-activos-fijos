@@ -2,7 +2,7 @@
 // const boom = require('@hapi/boom');
 const {models}=require('../libs/sequelize');
 
-class InstitutionsService {
+class ArmaService {
 
   constructor(){
     // this.institutions = [];
@@ -12,35 +12,35 @@ class InstitutionsService {
   }
 
   async create(data) {
-    const newInstitution = await models.Institution.create(data);
-    return newInstitution;
+    const newArma = await models.Arma.create(data);
+    return newArma;
   }
 
   async find() {
     // const query='SELECT *FROM usuarios';
     // const {data}=await sequelize.query(query);
-    const rta = await models.Institution.findAll();
+    const rta = await models.Arma.findAll();
     return rta;
   }
   async findOne(id) {
-    const institution = await models.Institution.findByPk(id,{
-      include:['user']
+    const arma = await models.Arma.findByPk(id,{
+      include:['detallePerdida']
     });
 
-    return institution;
+    return arma;
   }
 
   async update(id, changes) {
-    const institution = await this.findOne(id);
-    const rta = await institution.update(changes);
+    const arma = await this.findOne(id);
+    const rta = await arma.update(changes);
     return rta;
   }
 
   async delete(id) {
-    const institution = await this.findOne(id);
-    await institution.destroy();
+    const arma = await this.findOne(id);
+    await arma.destroy();
     return { id };
   }
 }
 
-module.exports = InstitutionsService;
+module.exports = ArmaService;
