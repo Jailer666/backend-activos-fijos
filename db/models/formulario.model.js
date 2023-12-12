@@ -87,6 +87,7 @@ const FormularioSchema = {
 
 class Formulario extends Model {
   static associate(models) {
+    this.belongsTo(models.User, { as: 'user' });
     this.hasMany(models.DetalleFormulario, { as: 'detalles', foreignKey: 'formularioId' });
   }
   static config(sequelize) {
