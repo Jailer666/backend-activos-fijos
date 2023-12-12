@@ -82,7 +82,7 @@ const ArmaSchema = {
   fechaRegActual: {
     allowNull: true,
     type: DataTypes.DATE,
-    field: 'fechart_reg_actual'
+    field: 'fecha_reg_actual'
   },
   mesRegistro: {
     allowNull: true,
