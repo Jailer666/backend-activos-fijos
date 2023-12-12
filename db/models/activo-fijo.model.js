@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-
+const {DETALLE_FORMULARIO_TABLE}=require('./detalle-formulario.model');
 const ACTIVO_FIJO_TABLE = 'activos_fijos';
 
 const ActivoFijoSchema = {
@@ -64,9 +64,7 @@ const ActivoFijoSchema = {
 
 class ActivoFijo extends Model {
   static associate(models) {
-    this.belongsTo(models.Institution, { as: 'institution' });
-    this.belongsTo(models.StateContrato, { as: 'stateContrato' });
-    this.hasMany(models.File, { as: 'files', foreignKey: 'contratoId' });
+    this.belongsTo(models.DetalleFormulario, { as: 'detalle' });
   }
   static config(sequelize) {
     return {
