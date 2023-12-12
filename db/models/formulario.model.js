@@ -63,7 +63,7 @@ const FormularioSchema = {
     type: DataTypes.DATE,
   },
   observaciones: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.TEXT,
   },
   createdAt: {
