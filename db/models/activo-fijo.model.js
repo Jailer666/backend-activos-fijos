@@ -1,8 +1,8 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const CONTRATO_TABLE = 'activos_fijos';
+const ACTIVO_FIJO_TABLE = 'activos_fijos';
 
-const ContratoSchema = {
+const ActivoFijoSchema = {
   id: {
     allowNull: false, //nulo
     autoIncrement: true, //autoincrementable
@@ -49,31 +49,20 @@ const ContratoSchema = {
     field: 'created_at',
     defaultValue: Sequelize.NOW,
   },
-  inventarioMueblesId: {
-    field: 'inventario_muebles_id',
+  detalleFormularioId: {
+    field: 'detalle_formulario_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: INSTITUTION_TABLE,
+      model: DETALLE_FORMULARIO_TABLE,
       key: 'id',
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL',
-  },
-  stateContratoId: {
-    field: 'state_contrato_id',
-    allowNull: false,
-    type: DataTypes.INTEGER,
-    references: {
-      model: STATE_CONTRATO_TABLE,
-      key: 'id',
-    },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
-  },
+  }
 };
 
-class Contrato extends Model {
+class ActivoFijo extends Model {
   static associate(models) {
     this.belongsTo(models.Institution, { as: 'institution' });
     this.belongsTo(models.StateContrato, { as: 'stateContrato' });
@@ -82,11 +71,11 @@ class Contrato extends Model {
   static config(sequelize) {
     return {
       sequelize,
-      tableName: CONTRATO_TABLE,
-      modelName: 'Contrato',
+      tableName: ACTIVO_FIJO_TABLE,
+      modelName: 'ActivoFijo',
       timestamps: false,
     };
   }
 }
 
-module.exports = { Contrato, ContratoSchema, CONTRATO_TABLE };
+module.exports = { ActivoFijo, ActivoFijoSchema, ACTIVO_FIJO_TABLE };
