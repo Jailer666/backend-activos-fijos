@@ -4,7 +4,7 @@ services:
   postgres:
     image: postgres:16
     environment:
-      - POSTGRES_DB=contratos
+      - POSTGRES_DB=activos_fijos
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
@@ -15,8 +15,8 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@mail.com
-      - PGADMIN_DEFAULT_PASSWORD=yosoywg7
+      - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=admin123
     ports:
       - 5050:80
   mysql:
