@@ -18,18 +18,7 @@ class ActivoFijoService {
     const rta = await models.ActivoFijo.findAll();
     return rta;
   }
-  async findByUser(userId) {
-    const orders = await models.Contrato.findAll({
-      where: { '$institution.user.id$': userId },
-      include: [
-        {
-          association: 'institution',
-          include: ['user']
-        }
-      ]
-    });
-    return orders;
-  }
+
   async findOne(id) {
     const activoFijo = await models.ActivoFijo.findByPk(id,{
       include:['detalle']
