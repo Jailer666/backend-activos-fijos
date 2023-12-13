@@ -27,7 +27,7 @@ const createFormularioSchema = Joi.object({
   cargoEntrante,
   oficinaEntrante,
   oficinaSaliente,
-  observaciones
+  observaciones,
 
 });
 
@@ -44,7 +44,7 @@ const updateFormularioSchema = Joi.object({
   cargoEntrante,
   oficinaEntrante,
   oficinaSaliente,
-  observaciones
+  observaciones,
 });
 
 const getFormularioSchema = Joi.object({
