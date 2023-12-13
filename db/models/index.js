@@ -21,7 +21,7 @@ function setupModels(sequelize) {
   Arma.init(ArmaSchema, Arma.config(sequelize));
 
 
-
+  User.associate(sequelize.models);
   Formulario.associate(sequelize.models);
   DetalleFormulario.associate(sequelize.models);
   ActivoFijo.associate(sequelize.models);

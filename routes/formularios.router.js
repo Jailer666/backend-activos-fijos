@@ -7,7 +7,7 @@ const { getFormularioSchema,createFormularioSchema,updateFormularioSchema } = re
 const router = express.Router();
 const service = new FormularioService();
 
-router.get('/',validatorHandler('query'),async (req,res,next)=>{
+router.get('/',async (req,res,next)=>{
   try{
     const formularios = await service.find(req.query);
     res.json(formularios);

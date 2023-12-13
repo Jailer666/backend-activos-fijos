@@ -7,7 +7,7 @@ const { getDetalleFormularioSchema,createDetalleFormularioSchema,updateDetalleFo
 const router = express.Router();
 const service = new DetalleFormularioService();
 
-router.get('/',validatorHandler('query'),async (req,res,next)=>{
+router.get('/',async (req,res,next)=>{
   try{
     const DetalleFormulario = await service.find(req.query);
     res.json(DetalleFormulario);

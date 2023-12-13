@@ -439,8 +439,8 @@ module.exports = {
 
   async down(queryInterface) {
     await queryInterface.dropTable(ACTIVO_FIJO_TABLE);
-    await queryInterface.dropTable(DETALLE_FORMULARIO_TABLE);
     await queryInterface.dropTable(FORMULARIO_TABLE);
+    await queryInterface.dropTable(DETALLE_FORMULARIO_TABLE);
     await queryInterface.dropTable(ARMA_TABLE);
     await queryInterface.dropTable(DETALLE_PERDIDA_TABLE);
     await queryInterface.dropTable(FORMULARIO_PERDIDA_TABLE);

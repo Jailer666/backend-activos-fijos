@@ -7,7 +7,7 @@ const { getActivoFijosSchema,createActivoFijosSchema,updateActivoFijosSchema } =
 const router = express.Router();
 const service = new ActivoFijosService();
 
-router.get('/',validatorHandler('query'),async (req,res,next)=>{
+router.get('/',async (req,res,next)=>{
   try{
     const ActivoFijos = await service.find(req.query);
     res.json(ActivoFijos);
