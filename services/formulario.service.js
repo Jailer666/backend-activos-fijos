@@ -1,11 +1,11 @@
 // const { faker } = require('@faker-js/faker');
 // const boom = require('@hapi/boom');
 
-const {models}=require('../libs/sequelize');
+const { models } = require('../libs/sequelize');
 
 class FormulariosService {
 
-  constructor(){
+  constructor() {
     // this.institutions = [];
     // this.generate();
     // this.pool=pool;
@@ -20,19 +20,28 @@ class FormulariosService {
   async find() {
     // const query='SELECT *FROM usuarios';
     // const {data}=await sequelize.query(query);
-    const options={
-      include:['user','detalles'],where:{}
+    const options = {
+      include: ['user', 'detalles'], where: {}
 
     }
     const rta = await models.Formulario.findAll(options);
     return rta;
   }
-  async findByUser() {
-
+  async findByUser(userId) {
+    const orders = await models.Contrato.findAll({
+      where: { '$formulario.user.id$': userId },
+      include: [
+        {
+          association: 'formulario',
+          include: ['user']
+        }
+      ]
+    });
+    return orders;
   }
   async findOne(id) {
-    const formulario = await models.Formulario.findByPk(id,{
-      include:['user','detalles']
+    const formulario = await models.Formulario.findByPk(id, {
+      include: ['user', 'detalles']
     });
 
     return formulario;

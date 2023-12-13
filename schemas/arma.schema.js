@@ -23,8 +23,6 @@ const detallePerdida= Joi.string();
 
 
 const createArmaSchema = Joi.object({
-  fecha: fecha.required(),
-  userId: userId.required(),
   tipoArma,
   modelo,
   marcaArma,
@@ -45,12 +43,10 @@ const createArmaSchema = Joi.object({
   procedencia,
   tipoAdquisicion,
   detallePerdida,
-  
+
 });
 
 const updateArmaSchema = Joi.object({
-  fecha,
-  userId,
   tipoArma,
   modelo,
   marcaArma,
