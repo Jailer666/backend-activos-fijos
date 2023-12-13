@@ -4,6 +4,8 @@ const express = require('express');
 const usersRouter = require('./users.router');
 
 const formulariosRouter=require('./formularios.router');
+const activosFijosRouter=require('./activo-fijo.router');
+
 const authRouter = require('./auth.router');
 const profileRouter = require('./profile.router');
 
@@ -12,6 +14,7 @@ function routerApi(app) {
   app.use('/api/v1', router);
     router.use('/users', usersRouter);
   router.use('/formularios', formulariosRouter);
+  router.use('/activos-fijos', activosFijosRouter);
   router.use('/auth', authRouter);
   router.use('/profile', profileRouter);
 }
