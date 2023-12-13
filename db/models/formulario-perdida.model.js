@@ -1,7 +1,7 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const {USER_TABLE}=require('./user.model');
 
-const FORMULARIO_PERDIDA_TABLE = 'formularios';
+const FORMULARIO_PERDIDA_TABLE = 'formularios_perdida';
 
 const FormularioPerdidaSchema = {
   id: {
