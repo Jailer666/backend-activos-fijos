@@ -11,12 +11,12 @@ const ubicacion = Joi.string();
 const detalleFormularioId = Joi.number().integer();
 
 const createActivoFijoSchema = Joi.object({
-  codigo:codigo.requerid(),
-  fechaAlta:fechaAlta.requerid(),
-  estado:estado.requerid(),
-  responsable:responsable.requerid(),
-  tipo:tipo.requerid(),
-  ubicacion:ubicacion.requerid(),
+  codigo:codigo.required(),
+  fechaAlta:fechaAlta.required(),
+  estado:estado.required(),
+  responsable:responsable.required(),
+  tipo:tipo.required(),
+  ubicacion:ubicacion.required(),
   descripcion,
   observaciones
 
