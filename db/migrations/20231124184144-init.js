@@ -170,7 +170,6 @@ module.exports = {
       codigo: {
         allowNull: false,
         type: DataTypes.STRING,
-        unique: true,
       },
       fechaAlta: {
         allowNull: false,

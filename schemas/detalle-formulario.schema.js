@@ -11,8 +11,8 @@ const createDetalleFormularioSchema = Joi.object({
 });
 
 const updateDetalleFormularioSchema = Joi.object({
-  tipo: tipo.required(),
-  codFormulario: codFormulario.required(),
+  tipo,
+  codFormulario,
   formularioId
 });
 

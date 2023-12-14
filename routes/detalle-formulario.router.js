@@ -21,8 +21,8 @@ validatorHandler(getDetalleFormularioSchema, 'params'),
 async (req,res,next)=>{
   try{
     const {id} = req.params;
-    const DetalleFormulario=await service.findOne(id);
-    res.json(ActivoFijo);
+    const detalleFormulario=await service.findOne(id);
+    res.json(detalleFormulario);
   }catch(error){
     next(error);
   }

@@ -15,6 +15,7 @@ const FormularioSchema = {
     type: DataTypes.STRING,
     field: 'unidad_principal',
 
+
   },
   unidad: {
     allowNull: true,
