@@ -16,7 +16,7 @@ class DetalleFormularioService {
 
   async find(query) {
     const options = {
-      include: ['activosFijos'],
+      include: [],
       where: {}
     }
     const { date_min, date_max } = query;
@@ -31,7 +31,7 @@ class DetalleFormularioService {
   }
   async findOne(id) {
     const detalleFormulario = await models.DetalleFormulario.findByPk(id, {
-      include: ['activosFijos']
+      include: []
     });
 
     return detalleFormulario;

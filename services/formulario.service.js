@@ -28,7 +28,7 @@ class FormulariosService {
     return rta;
   }
   async findByUser(userId) {
-    const orders = await models.Contrato.findAll({
+    const orders = await models.Formulario.findAll({
       where: { '$formulario.user.id$': userId },
       include: [
         {

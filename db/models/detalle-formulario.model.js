@@ -40,12 +40,11 @@ const DetalleFormularioSchema = {
 };
 
 class DetalleFormulario extends Model {
-  static associate() {
+  static associate(models) {
     // this.belongsTo(models.Formulario, { as: 'formulario' });
-    // this.hasMany(models.ActivoFijo, {
-    //   as: 'activosFijos',
-    //   foreignKey: 'detalleFormularioId',
-    // });
+    this.hasMany(models.ActivoFijo, {
+      foreignKey: 'detalleFormularioId'
+    });
   }
   static config(sequelize) {
     return {

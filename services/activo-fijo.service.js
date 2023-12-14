@@ -14,14 +14,15 @@ class ActivoFijoService {
   }
 
   async find() {
-
-    const rta = await models.ActivoFijo.findAll();
+    const rta = await models.ActivoFijo.findAll({
+      include:['detalleFormulario']
+    });
     return rta;
   }
 
   async findOne(id) {
     const activoFijo = await models.ActivoFijo.findByPk(id,{
-      include:['detalle']
+      include:['detalleFormulario']
     });
 
     return activoFijo;

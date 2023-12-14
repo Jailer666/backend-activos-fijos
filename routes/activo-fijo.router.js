@@ -1,11 +1,11 @@
 const express=require('express');
-const ActivoFijosService = require('../services/activo-fijo.service');
+const ActivoFijoService = require('../services/activo-fijo.service');
 
 const validatorHandler = require('../middlewares/validator.handler');
-const { getActivoFijosSchema,createActivoFijosSchema,updateActivoFijosSchema } = require('../schemas/activo-fijo.schema');
+const { getActivoFijoSchema,createActivoFijoSchema,updateActivoFijosSchema } = require('../schemas/activo-fijo.schema');
 
 const router = express.Router();
-const service = new ActivoFijosService();
+const service = new ActivoFijoService();
 
 router.get('/',async (req,res,next)=>{
   try{
@@ -17,7 +17,7 @@ router.get('/',async (req,res,next)=>{
 });
 
 router.get('/:id',
-validatorHandler(getActivoFijosSchema, 'params'),
+validatorHandler(getActivoFijoSchema, 'params'),
 async (req,res,next)=>{
   try{
     const {id} = req.params;
@@ -29,7 +29,7 @@ async (req,res,next)=>{
 });
 
 router.post('/',
-validatorHandler(createActivoFijosSchema, 'body'),
+validatorHandler(createActivoFijoSchema, 'body'),
 async (req,res,next)=>{
   try{
     const body = req.body;
@@ -42,7 +42,7 @@ async (req,res,next)=>{
 );
 
 router.patch('/:id',
-  validatorHandler(getActivoFijosSchema, 'params'),
+  validatorHandler(getActivoFijoSchema, 'params'),
   validatorHandler(updateActivoFijosSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -57,7 +57,7 @@ router.patch('/:id',
 );
 
 router.delete('/:id',
-  validatorHandler(getActivoFijosSchema, 'params'),
+  validatorHandler(getActivoFijoSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;

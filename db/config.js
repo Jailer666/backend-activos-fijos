@@ -8,6 +8,10 @@ module.exports = {
   development: {
     url: config.dbUrl,
     dialect: 'postgres',
+    define: {
+      // Forzar la creación de la base de datos si no existe
+      force: true,
+    },
   },
   production: {
     url: config.dbUrl,

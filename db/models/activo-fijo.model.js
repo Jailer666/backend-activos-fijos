@@ -63,7 +63,7 @@ const ActivoFijoSchema = {
 
 class ActivoFijo extends Model {
   static associate(models) {
-    this.belongsTo(models.DetalleFormulario, { as: 'detalle' });
+    this.belongsTo(models.DetalleFormulario, { as: 'detalleFormulario' });
   }
   static config(sequelize) {
     return {
