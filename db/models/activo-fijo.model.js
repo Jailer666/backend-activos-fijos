@@ -12,6 +12,7 @@ const ActivoFijoSchema = {
   codigo: {
     allowNull: false,
     type: DataTypes.STRING,
+    unique:true
   },
   fechaAlta: {
     allowNull: false,
@@ -63,7 +64,7 @@ const ActivoFijoSchema = {
 
 class ActivoFijo extends Model {
   static associate(models) {
-    this.belongsTo(models.DetalleFormulario, { as: 'detalleActivoFijo' });
+    this.belongsTo(models.DetalleActivoFijo, { as: 'detalleActivoFijo' });
   }
   static config(sequelize) {
     return {

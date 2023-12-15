@@ -27,7 +27,7 @@ class DetalleActivoFijo extends Model {
       foreignKey:'detalleActivoFijoId'
      });
      this.hasMany(models.ActivoFijo,{
-      as:'activoFijos',
+      as:'activosFijos',
       foreignKey:'detalleActivoFijoId'
      });
   }

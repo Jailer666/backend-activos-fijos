@@ -14,7 +14,7 @@ class DetalleActivoFijoService {
   }
 
   async find() {
-    const rta = await models.ActivoFijo.findAll({
+    const rta = await models.DetalleActivoFijo.findAll({
       include:['formularios','activosFijos']
     });
     return rta;
