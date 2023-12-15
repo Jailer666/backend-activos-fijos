@@ -1,12 +1,9 @@
 // const { faker } = require('@faker-js/faker');
 // const boom = require('@hapi/boom');
-const {models}=require('../libs/sequelize');
+const { models } = require('../libs/sequelize');
 
 class ActivoFijoService {
-
-  constructor(){
-
-  }
+  constructor() {}
 
   async create(data) {
     const newActivoFijo = await models.ActivoFijo.create(data);
@@ -15,14 +12,15 @@ class ActivoFijoService {
 
   async find() {
     const rta = await models.ActivoFijo.findAll({
-      include:['detalleActivoFijo']
+      include: ['detalleActivoFijo'],
+      order: [['id', 'ASC']],
     });
     return rta;
   }
 
   async findOne(id) {
-    const activoFijo = await models.ActivoFijo.findByPk(id,{
-      include:['detalleActivoFijo']
+    const activoFijo = await models.ActivoFijo.findByPk(id, {
+      include: ['detalleActivoFijo'],
     });
 
     return activoFijo;

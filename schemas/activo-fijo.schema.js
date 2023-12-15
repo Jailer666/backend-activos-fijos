@@ -18,7 +18,7 @@ const createActivoFijoSchema = Joi.object({
   observaciones,
   responsable: responsable.required(),
   tipo: tipo.required(),
-  ubicacion: ubicacion.required(),
+  ubicacion,
   detalleActivoFijoId
 });
 
