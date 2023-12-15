@@ -40,7 +40,7 @@ const ActivoFijoSchema = {
     type: DataTypes.STRING,
   },
   ubicacion: {
-    allowNull: false,
+    allowNull:true,
     type: DataTypes.STRING,
   },
   createdAt: {
