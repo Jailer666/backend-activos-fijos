@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const DETALLE_ACTIVO_FIJO_TABLE = 'activos_fijos';
+const DETALLE_ACTIVO_FIJO_TABLE = 'detalle_activos_fijos';
 
 const DetalleActivoFijoSchema = {
   id: {
