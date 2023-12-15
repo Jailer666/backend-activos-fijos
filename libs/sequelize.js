@@ -9,7 +9,7 @@ const setupModels=require('./../db/models');
 // const URI=`postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 const options={
   dialect:'postgres',
-  logging:config.isProd ? false:true
+  logging:config.isProd ? false:true,
 }
 if(config.isProd){
   options.ssl={
