@@ -50,7 +50,7 @@ module.exports = {
         defaultValue: Sequelize.NOW//el momento en que se registro
       }
     });
-    await queryInterface.createDatabase(DETALLE_ACTIVO_FIJO_TABLE, {
+    await queryInterface.createTable(DETALLE_ACTIVO_FIJO_TABLE, {
       id: {
         allowNull: false, //nulo
         autoIncrement: true, //autoincrementable
@@ -59,7 +59,7 @@ module.exports = {
       },
       version: {
         allowNull: false, //nulo
-        type: DataTypes.STRING, //tipo entero
+        type: DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,
