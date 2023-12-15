@@ -4,6 +4,7 @@ const { DataTypes, Sequelize } = require('sequelize');
 const { USER_TABLE } = require('./../models/user.model');
 const { FORMULARIO_TABLE } = require('./../models/formulario.model');
 const { DETALLE_FORMULARIO_TABLE } = require('../models/detalle-formulario.model');
+const { DETALLE_ACTIVO_FIJO_TABLE } = require('../models/detalle-activo-fijo.model');
 const { ACTIVO_FIJO_TABLE } = require('../models/activo-fijo.model');
 const { FORMULARIO_PERDIDA_TABLE } = require('../models/formulario-perdida.model');
 const { DETALLE_PERDIDA_TABLE } = require('../models/detalle-perdida.model');
@@ -32,6 +33,11 @@ module.exports = {
         allowNull: false,
         type: DataTypes.STRING
       },
+      recoveryToken: {
+        field: 'recovery_token',
+        allowNull: true,
+        type: DataTypes.STRING
+      },
       role: {
         allowNull: false,
         type: DataTypes.STRING,
@@ -42,6 +48,82 @@ module.exports = {
         type: DataTypes.DATE, //tipo fecha
         field: 'create_at',
         defaultValue: Sequelize.NOW//el momento en que se registro
+      }
+    });
+    await queryInterface.createDatabase(DETALLE_ACTIVO_FIJO_TABLE, {
+      id: {
+        allowNull: false, //nulo
+        autoIncrement: true, //autoincrementable
+        primaryKey: true, //clave primaria
+        type: DataTypes.INTEGER, //tipo entero
+      },
+      version: {
+        allowNull: false, //nulo
+        type: DataTypes.STRING, //tipo entero
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        field: 'created_at',
+        defaultValue: Sequelize.NOW,
+      }
+    });
+    await queryInterface.createTable(ACTIVO_FIJO_TABLE, {
+      id: {
+        allowNull: false, //nulo
+        autoIncrement: true, //autoincrementable
+        primaryKey: true, //clave primaria
+        type: DataTypes.INTEGER, //tipo entero
+      },
+      codigo: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      fechaAlta: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        field: 'fecha_alta',
+      },
+      descripcion: {
+        allowNull: true,
+        type: DataTypes.TEXT,
+      },
+      estado: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      observaciones: {
+        allowNull: true,
+        type: DataTypes.TEXT,
+      },
+      responsable: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      tipo: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      ubicacion: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        field: 'created_at',
+        defaultValue: Sequelize.NOW,
+      },
+      detalleActivoFijoId: {
+        field: 'detalle_activo_fijo_id',
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: DETALLE_ACTIVO_FIJO_TABLE,
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
       }
     });
     await queryInterface.createTable(FORMULARIO_TABLE, {
@@ -55,6 +137,7 @@ module.exports = {
         allowNull: true,
         type: DataTypes.STRING,
         field: 'unidad_principal',
+
 
       },
       unidad: {
@@ -123,7 +206,19 @@ module.exports = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
+      },
+      detalleActivoFijoId: {
+        field: 'detalle_activo_fijo_id',
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: DETALLE_ACTIVO_FIJO_TABLE,
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
       }
+
     });
     await queryInterface.createTable(DETALLE_FORMULARIO_TABLE, {
       id: {
@@ -160,64 +255,7 @@ module.exports = {
         onDelete: 'SET NULL',
       },
     });
-    await queryInterface.createTable(ACTIVO_FIJO_TABLE, {
-      id: {
-        allowNull: false, //nulo
-        autoIncrement: true, //autoincrementable
-        primaryKey: true, //clave primaria
-        type: DataTypes.INTEGER, //tipo entero
-      },
-      codigo: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      fechaAlta: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        field: 'fecha_alta',
-      },
-      descripcion: {
-        allowNull: true,
-        type: DataTypes.TEXT,
-      },
-      estado: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      observaciones: {
-        allowNull: true,
-        type: DataTypes.TEXT,
-      },
-      responsable: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      tipo: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      ubicacion: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        field: 'created_at',
-        defaultValue: Sequelize.NOW,
-      },
-      detalleFormularioId: {
-        field: 'detalle_formulario_id',
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        references: {
-          model: DETALLE_FORMULARIO_TABLE,
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      }
-    });
+
     await queryInterface.createTable(FORMULARIO_PERDIDA_TABLE, {
       id: {
         allowNull: false, //nulo
@@ -440,6 +478,7 @@ module.exports = {
     await queryInterface.dropTable(ACTIVO_FIJO_TABLE);
     await queryInterface.dropTable(DETALLE_FORMULARIO_TABLE);
     await queryInterface.dropTable(FORMULARIO_TABLE);
+    await queryInterface.dropTable(DETALLE_ACTIVO_FIJO_TABLE);
     await queryInterface.dropTable(ARMA_TABLE);
     await queryInterface.dropTable(DETALLE_PERDIDA_TABLE);
     await queryInterface.dropTable(FORMULARIO_PERDIDA_TABLE);

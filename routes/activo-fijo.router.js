@@ -2,7 +2,7 @@ const express=require('express');
 const ActivoFijoService = require('../services/activo-fijo.service');
 
 const validatorHandler = require('../middlewares/validator.handler');
-const { getActivoFijoSchema,createActivoFijoSchema,updateActivoFijosSchema } = require('../schemas/activo-fijo.schema');
+const { getActivoFijoSchema,createActivoFijoSchema,updateActivoFijoSchema } = require('../schemas/activo-fijo.schema');
 
 const router = express.Router();
 const service = new ActivoFijoService();
@@ -43,7 +43,7 @@ async (req,res,next)=>{
 
 router.patch('/:id',
   validatorHandler(getActivoFijoSchema, 'params'),
-  validatorHandler(updateActivoFijosSchema, 'body'),
+  validatorHandler(updateActivoFijoSchema, 'body'),
   async (req, res, next) => {
     try {
       const { id } = req.params;

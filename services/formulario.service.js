@@ -21,7 +21,7 @@ class FormulariosService {
     // const query='SELECT *FROM usuarios';
     // const {data}=await sequelize.query(query);
     const options = {
-      include: ['user', 'detalles'], where: {}
+      include: ['detalleActivoFijo','user', 'detalles',], where: {}
 
     }
     const rta = await models.Formulario.findAll(options);
@@ -41,7 +41,7 @@ class FormulariosService {
   }
   async findOne(id) {
     const formulario = await models.Formulario.findByPk(id, {
-      include: ['user', 'detalles']
+      include: ['detalleActivoFijo','user', 'detalles']
     });
 
     return formulario;

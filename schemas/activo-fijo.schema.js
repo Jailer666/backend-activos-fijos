@@ -8,7 +8,7 @@ const observaciones = Joi.string();
 const responsable = Joi.string();
 const tipo = Joi.string();
 const ubicacion = Joi.string();
-const detalleFormularioId = Joi.number().integer();
+const detalleActivoFijoId = Joi.number().integer();
 
 const createActivoFijoSchema = Joi.object({
   codigo: codigo.required(),
@@ -19,12 +19,12 @@ const createActivoFijoSchema = Joi.object({
   responsable: responsable.required(),
   tipo: tipo.required(),
   ubicacion: ubicacion.required(),
-  detalleFormularioId
+  detalleActivoFijoId
 });
 
 const updateActivoFijoSchema = Joi.object({
     observaciones,
-    detalleFormularioId
+    detalleActivoFijoId
   });
 
   const getActivoFijoSchema = Joi.object({

@@ -1,5 +1,7 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const {USER_TABLE}=require('./user.model');
+const {DETALLE_ACTIVO_FIJO_TABLE}=require('./detalle-activo-fijo.model');
+
 
 const FORMULARIO_TABLE = 'formularios';
 
@@ -83,12 +85,25 @@ const FormularioSchema = {
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL',
+  },
+  detalleActivoFijoId: {
+    field: 'detalle_activo_fijo_id',
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: DETALLE_ACTIVO_FIJO_TABLE,
+      key: 'id',
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL',
   }
+
 };
 
 class Formulario extends Model {
   static associate(models) {
     this.belongsTo(models.User, { as: 'user' });
+    this.belongsTo(models.DetalleActivoFijo, { as: 'detalleActivoFijo' });
     this.hasMany(models.DetalleFormulario, { as: 'detalles', foreignKey: 'formularioId' });
   }
   static config(sequelize) {

@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const {DETALLE_FORMULARIO_TABLE}=require('./detalle-formulario.model');
+const {DETALLE_ACTIVO_FIJO_TABLE}=require('./detalle-activo-fijo.model');
 const ACTIVO_FIJO_TABLE = 'activos_fijos';
 
 const ActivoFijoSchema = {
@@ -48,12 +48,12 @@ const ActivoFijoSchema = {
     field: 'created_at',
     defaultValue: Sequelize.NOW,
   },
-  detalleFormularioId: {
-    field: 'detalle_formulario_id',
+  detalleActivoFijoId: {
+    field: 'detalle_activo_fijo_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: DETALLE_FORMULARIO_TABLE,
+      model: DETALLE_ACTIVO_FIJO_TABLE,
       key: 'id',
     },
     onUpdate: 'CASCADE',
@@ -63,7 +63,7 @@ const ActivoFijoSchema = {
 
 class ActivoFijo extends Model {
   static associate(models) {
-    this.belongsTo(models.DetalleFormulario, { as: 'detalleFormulario' });
+    this.belongsTo(models.DetalleFormulario, { as: 'detalleActivoFijo' });
   }
   static config(sequelize) {
     return {
