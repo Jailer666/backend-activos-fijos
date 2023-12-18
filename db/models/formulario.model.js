@@ -62,12 +62,22 @@ const FormularioSchema = {
     field: 'oficina_entrante',
   },
   fecha: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DATE,
   },
   observaciones: {
     allowNull: true,
     type: DataTypes.TEXT,
+  },
+  tipo: {
+    allowNull: true,
+    type: DataTypes.STRING,
+  },
+  codFormulario: {
+    allowNull: true,
+    type: DataTypes.STRING,
+    field: 'cod_formulario',
+    unique: true,
   },
   createdAt: {
     allowNull: false,
@@ -104,7 +114,6 @@ class Formulario extends Model {
   static associate(models) {
     this.belongsTo(models.User, { as: 'user' });
     this.belongsTo(models.DetalleActivoFijo, { as: 'detalleActivoFijo' });
-    this.hasMany(models.DetalleFormulario, { as: 'detalles', foreignKey: 'formularioId' });
   }
   static config(sequelize) {
     return {

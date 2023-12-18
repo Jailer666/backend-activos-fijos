@@ -2,7 +2,6 @@ const { User, UserSchema } = require('./user.model');
 
 
 const { Formulario, FormularioSchema } = require('./formulario.model');
-const { DetalleFormulario, DetalleFormularioSchema } = require('./detalle-formulario.model');
 const { ActivoFijo, ActivoFijoSchema } = require('./activo-fijo.model');
 const { DetalleActivoFijo, DetalleActivoFijoSchema } = require('./detalle-activo-fijo.model');
 const { FormularioPerdida, FormularioPerdidaSchema } = require('./formulario-perdida.model');
@@ -15,7 +14,6 @@ function setupModels(sequelize) {
 
 
   Formulario.init(FormularioSchema, Formulario.config(sequelize));
-  DetalleFormulario.init(DetalleFormularioSchema, DetalleFormulario.config(sequelize));
   ActivoFijo.init(ActivoFijoSchema, ActivoFijo.config(sequelize));
   DetalleActivoFijo.init(DetalleActivoFijoSchema, DetalleActivoFijo.config(sequelize));
   FormularioPerdida.init(FormularioPerdidaSchema, FormularioPerdida.config(sequelize));
@@ -25,11 +23,10 @@ function setupModels(sequelize) {
 
   User.associate(sequelize.models);
   Formulario.associate(sequelize.models);
-  DetalleFormulario.associate(sequelize.models);
   ActivoFijo.associate(sequelize.models);
   DetalleActivoFijo.associate(sequelize.models);
   FormularioPerdida.associate(sequelize.models);
-  DetalleFormulario.associate(sequelize.models);
+  DetallePerdida.associate(sequelize.models);
   Arma.associate(sequelize.models);
 
 }
