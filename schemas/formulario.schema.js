@@ -12,13 +12,17 @@ const oficinaEntrante = Joi.string();
 const oficinaSaliente = Joi.string();
 const fecha = Joi.date();
 const observaciones = Joi.string();
+const tipo = Joi.string();
+const codFormulario = Joi.string();
 const userId = Joi.number().integer();
 const detalleActivoFijoId = Joi.number().integer();
 
 
 const createFormularioSchema = Joi.object({
-  fecha: fecha.required(),
   userId: userId.required(),
+  tipo:tipo.required(),
+  codFormulario:codFormulario.required(),
+  fecha,
   unidadPrincipal,
   unidad,
   departamento,

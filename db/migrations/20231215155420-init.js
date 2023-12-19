@@ -3,7 +3,6 @@ const { DataTypes, Sequelize } = require('sequelize');
 
 const { USER_TABLE } = require('./../models/user.model');
 const { FORMULARIO_TABLE } = require('./../models/formulario.model');
-const { DETALLE_FORMULARIO_TABLE } = require('../models/detalle-formulario.model');
 const { DETALLE_ACTIVO_FIJO_TABLE } = require('../models/detalle-activo-fijo.model');
 const { ACTIVO_FIJO_TABLE } = require('../models/activo-fijo.model');
 const { FORMULARIO_PERDIDA_TABLE } = require('../models/formulario-perdida.model');
@@ -78,7 +77,7 @@ module.exports = {
       codigo: {
         allowNull: false,
         type: DataTypes.STRING,
-        unique:true
+        unique: true
       },
       fechaAlta: {
         allowNull: false,
@@ -184,12 +183,22 @@ module.exports = {
         field: 'oficina_entrante',
       },
       fecha: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DATE,
       },
       observaciones: {
         allowNull: true,
         type: DataTypes.TEXT,
+      },
+      tipo: {
+        allowNull: true,
+        type: DataTypes.STRING,
+      },
+      codFormulario: {
+        allowNull: true,
+        type: DataTypes.STRING,
+        field: 'cod_formulario',
+        unique: true,
       },
       createdAt: {
         allowNull: false,
@@ -221,41 +230,7 @@ module.exports = {
       }
 
     });
-    await queryInterface.createTable(DETALLE_FORMULARIO_TABLE, {
-      id: {
-        allowNull: false, //nulo
-        autoIncrement: true, //autoincrementable
-        primaryKey: true, //clave primaria
-        type: DataTypes.INTEGER, //tipo entero
-      },
-      tipo: {
-        allowNull: true,
-        type: DataTypes.STRING,
-      },
-      codFormulario: {
-        allowNull: true,
-        type: DataTypes.STRING,
-        field: 'cod_formulario',
-        unique: true,
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        field: 'created_at',
-        defaultValue: Sequelize.NOW,
-      },
-      formularioId: {
-        field: 'formulario_id',
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        references: {
-          model: FORMULARIO_TABLE,
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      },
-    });
+
 
     await queryInterface.createTable(FORMULARIO_PERDIDA_TABLE, {
       id: {
@@ -477,7 +452,6 @@ module.exports = {
 
   async down(queryInterface) {
     await queryInterface.dropTable(ACTIVO_FIJO_TABLE);
-    await queryInterface.dropTable(DETALLE_FORMULARIO_TABLE);
     await queryInterface.dropTable(FORMULARIO_TABLE);
     await queryInterface.dropTable(DETALLE_ACTIVO_FIJO_TABLE);
     await queryInterface.dropTable(ARMA_TABLE);
