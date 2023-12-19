@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { USER_TABLE } = require('./user.model.model');
+const { USER_TABLE } = require('./user.model');
 const ARMA_TABLE = 'armas';
 
 const ArmaSchema = {

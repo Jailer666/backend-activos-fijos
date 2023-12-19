@@ -3,10 +3,13 @@ const { DataTypes, Sequelize } = require('sequelize');
 
 const { USER_TABLE } = require('./../models/user.model');
 const { FORMULARIO_TABLE } = require('./../models/formulario.model');
-const { DETALLE_ACTIVO_FIJO_TABLE } = require('../models/detalle-activo-fijo.model');
+const {
+  DETALLE_ACTIVO_FIJO_TABLE,
+} = require('../models/detalle-activo-fijo.model');
 const { ACTIVO_FIJO_TABLE } = require('../models/activo-fijo.model');
-const { FORMULARIO_PERDIDA_TABLE } = require('../models/formulario-perdida.model');
-const { DETALLE_PERDIDA_TABLE } = require('../models/detalle-perdida.model');
+const {
+  FORMULARIO_PERDIDA_TABLE,
+} = require('../models/formulario-perdida.model');
 const { ARMA_TABLE } = require('../models/arma.model');
 /**@type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -14,40 +17,40 @@ module.exports = {
     await queryInterface.createTable(USER_TABLE, {
       id: {
         allowNull: false, //nulo
-        autoIncrement: true,//autoincrementable
-        primaryKey: true,//clave primaria
-        type: DataTypes.INTEGER//tipo entero
+        autoIncrement: true, //autoincrementable
+        primaryKey: true, //clave primaria
+        type: DataTypes.INTEGER, //tipo entero
       },
       username: {
         allowNull: false,
-        type: DataTypes.STRING,//tipo cadena de texto
+        type: DataTypes.STRING, //tipo cadena de texto
         unique: true, //valor unico
       },
       email: {
         allowNull: false,
-        type: DataTypes.STRING,//tipo cadena de texto
+        type: DataTypes.STRING, //tipo cadena de texto
         unique: true, //valor unico
       },
       password: {
         allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       recoveryToken: {
         field: 'recovery_token',
         allowNull: true,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       role: {
         allowNull: false,
         type: DataTypes.STRING,
-        defaultValue: 'admin'
+        defaultValue: 'admin',
       },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE, //tipo fecha
         field: 'create_at',
-        defaultValue: Sequelize.NOW//el momento en que se registro
-      }
+        defaultValue: Sequelize.NOW, //el momento en que se registro
+      },
     });
     await queryInterface.createTable(DETALLE_ACTIVO_FIJO_TABLE, {
       id: {
@@ -65,7 +68,7 @@ module.exports = {
         type: DataTypes.DATE,
         field: 'created_at',
         defaultValue: Sequelize.NOW,
-      }
+      },
     });
     await queryInterface.createTable(ACTIVO_FIJO_TABLE, {
       id: {
@@ -77,7 +80,7 @@ module.exports = {
       codigo: {
         allowNull: false,
         type: DataTypes.STRING,
-        unique: true
+        unique: true,
       },
       fechaAlta: {
         allowNull: false,
@@ -124,7 +127,7 @@ module.exports = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
-      }
+      },
     });
     await queryInterface.createTable(FORMULARIO_TABLE, {
       id: {
@@ -137,8 +140,6 @@ module.exports = {
         allowNull: true,
         type: DataTypes.STRING,
         field: 'unidad_principal',
-
-
       },
       unidad: {
         allowNull: true,
@@ -227,113 +228,9 @@ module.exports = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
-      }
-
+      },
     });
 
-
-    await queryInterface.createTable(FORMULARIO_PERDIDA_TABLE, {
-      id: {
-        allowNull: false, //nulo
-        autoIncrement: true, //autoincrementable
-        primaryKey: true, //clave primaria
-        type: DataTypes.INTEGER, //tipo entero
-      },
-      codigo: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        unique: true
-      },
-      departamento: {
-        allowNull: true,
-        type: DataTypes.STRING,
-      },
-      provincia: {
-        allowNull: true,
-        type: DataTypes.STRING,
-      },
-      responsables: {
-        allowNull: true,
-        type: DataTypes.STRING,
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        field: 'created_at',
-        defaultValue: Sequelize.NOW,
-      },
-      usuarioId: {
-        field: 'usuario_id',
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        references: {
-          model: USER_TABLE,
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      }
-    });
-    await queryInterface.createTable(DETALLE_PERDIDA_TABLE, {
-      id: {
-        allowNull: false, //nulo
-        autoIncrement: true, //autoincrementable
-        primaryKey: true, //clave primaria
-        type: DataTypes.INTEGER, //tipo entero
-      },
-      condicion: {
-        allowNull: true,
-        type: DataTypes.STRING,
-      },
-      estadoArma: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        field: 'estado_arma'
-      },
-      responsable: {
-        allowNull: true,
-        type: DataTypes.STRING,
-      },
-      ciResponsable: {
-        allowNull: true,
-        type: DataTypes.STRING,
-        field: 'ci_responsable'
-      },
-      nroInformeResponsable: {
-        allowNull: true,
-        type: DataTypes.STRING,
-        field: 'nro_informe_responsable'
-      },
-      situacion: {
-        allowNull: true,
-        type: DataTypes.STRING,
-      },
-      nroCasoInvestigacion: {
-        allowNull: true,
-        type: DataTypes.STRING,
-      },
-      observaciones: {
-        allowNull: true,
-        type: DataTypes.TEXT,
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        field: 'created_at',
-        defaultValue: Sequelize.NOW,
-      },
-      formularioPerdidaId: {
-        field: 'formulario_perdida_id',
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        references: {
-          model: FORMULARIO_PERDIDA_TABLE,
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      }
-    });
     await queryInterface.createTable(ARMA_TABLE, {
       id: {
         allowNull: false, //nulo
@@ -362,7 +259,7 @@ module.exports = {
       serialArma: {
         allowNull: true,
         type: DataTypes.STRING,
-        field: 'serial_arma'
+        field: 'serial_arma',
       },
       industria: {
         allowNull: false,
@@ -371,17 +268,17 @@ module.exports = {
       nroCargador: {
         allowNull: false,
         type: DataTypes.STRING,
-        field: 'nro_cargador'
+        field: 'nro_cargador',
       },
       capacidadCargador: {
         allowNull: false,
         type: DataTypes.STRING,
-        field: 'capacidad_cargador'
+        field: 'capacidad_cargador',
       },
       capacidadTambor: {
         allowNull: false,
         type: DataTypes.STRING,
-        field: 'capacidad_tambor'
+        field: 'capacidad_tambor',
       },
       estado: {
         allowNull: false,
@@ -394,32 +291,32 @@ module.exports = {
       estadoExistencia: {
         allowNull: false,
         type: DataTypes.STRING,
-        field: 'estado_existencia'
+        field: 'estado_existencia',
       },
       fechaEntrega: {
         allowNull: true,
         type: DataTypes.DATE,
-        field: 'fecha_entrega'
+        field: 'fecha_entrega',
       },
       fechaRecepcion: {
         allowNull: true,
         type: DataTypes.DATE,
-        field: 'fecha_recepcion'
+        field: 'fecha_recepcion',
       },
       nroActaEntrega: {
         allowNull: true,
         type: DataTypes.STRING,
-        field: 'nro_acta_entrega'
+        field: 'nro_acta_entrega',
       },
       fechaRegActual: {
         allowNull: true,
         type: DataTypes.DATE,
-        field: 'fecha_reg_actual'
+        field: 'fecha_reg_actual',
       },
       mesRegistro: {
         allowNull: true,
         type: DataTypes.DATE,
-        field: 'mes_registro'
+        field: 'mes_registro',
       },
       procedencia: {
         allowNull: true,
@@ -428,7 +325,7 @@ module.exports = {
       tipoAdquisicion: {
         allowNull: true,
         type: DataTypes.STRING,
-        field: 'tipo_adquisicion'
+        field: 'tipo_adquisicion',
       },
       createdAt: {
         allowNull: false,
@@ -436,17 +333,98 @@ module.exports = {
         field: 'created_at',
         defaultValue: Sequelize.NOW,
       },
-      detallePerdidaId: {
-        field: 'detalle_perdida_id',
+      userId: {
+        field: 'user_id',
         allowNull: false,
         type: DataTypes.INTEGER,
         references: {
-          model: DETALLE_PERDIDA_TABLE,
+          model: USER_TABLE,
           key: 'id',
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
-      }
+      },
+    });
+    await queryInterface.createTable(FORMULARIO_PERDIDA_TABLE, {
+      id: {
+        allowNull: false, //nulo
+        autoIncrement: true, //autoincrementable
+        primaryKey: true, //clave primaria
+        type: DataTypes.INTEGER, //tipo entero
+      },
+      codigo: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      departamento: {
+        allowNull: true,
+        type: DataTypes.STRING,
+      },
+      provincia: {
+        allowNull: true,
+        type: DataTypes.STRING,
+      },
+      responsables: {
+        allowNull: true,
+        type: DataTypes.STRING,
+      },
+      condicion: {
+        allowNull: true,
+        type: DataTypes.STRING,
+      },
+      estadoArma: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        field: 'estado_arma',
+      },
+      responsable: {
+        allowNull: true,
+        type: DataTypes.STRING,
+      },
+      ciResponsable: {
+        allowNull: true,
+        type: DataTypes.STRING,
+        field: 'ci_responsable',
+      },
+      nroInformeResponsable: {
+        allowNull: true,
+        type: DataTypes.STRING,
+        field: 'nro_informe_responsable',
+      },
+      situacion: {
+        allowNull: true,
+        type: DataTypes.STRING,
+      },
+      nroCasoInvestigacion: {
+        allowNull: true,
+        type: DataTypes.STRING,
+      },
+      fecha: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
+      observaciones: {
+        allowNull: true,
+        type: DataTypes.TEXT,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        field: 'created_at',
+        defaultValue: Sequelize.NOW,
+      },
+      armaId: {
+        field: 'arma_id',
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: ARMA_TABLE,
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      },
     });
   },
 
@@ -454,9 +432,8 @@ module.exports = {
     await queryInterface.dropTable(ACTIVO_FIJO_TABLE);
     await queryInterface.dropTable(FORMULARIO_TABLE);
     await queryInterface.dropTable(DETALLE_ACTIVO_FIJO_TABLE);
-    await queryInterface.dropTable(ARMA_TABLE);
-    await queryInterface.dropTable(DETALLE_PERDIDA_TABLE);
     await queryInterface.dropTable(FORMULARIO_PERDIDA_TABLE);
+    await queryInterface.dropTable(ARMA_TABLE);
     await queryInterface.dropTable(USER_TABLE);
-  }
+  },
 };

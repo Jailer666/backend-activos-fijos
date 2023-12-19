@@ -58,6 +58,10 @@ const FormularioPerdidaSchema = {
     allowNull: true,
     type: DataTypes.STRING,
   },
+  fecha: {
+    allowNull: true,
+    type: DataTypes.DATE,
+  },
   observaciones:{
     allowNull: true,
     type: DataTypes.TEXT,

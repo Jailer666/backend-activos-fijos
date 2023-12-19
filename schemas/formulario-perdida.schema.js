@@ -12,12 +12,13 @@ const nroInformeResponsable= Joi.string();
 const situacion= Joi.string();
 const nroCasoInvestigacion = Joi.string();
 const observaciones= Joi.string();
-const armaId = Joi.integer();
+const fecha=Joi.date();
+const armaId = Joi.number().integer();
 
 
 const createFormularioPerdidaSchema = Joi.object({
   fecha: fecha.required(),
-  userId: userId.required(),
+  armaIdId: armaId.required(),
   codigo,
   departamento,
   provincia,
@@ -30,13 +31,13 @@ const createFormularioPerdidaSchema = Joi.object({
   situacion,
   nroCasoInvestigacion,
   observaciones,
-  armaId,
+  
   
 });
 
 const updateFormularioPerdidaSchema = Joi.object({
   fecha,
-  userId,
+  armaId,
   codigo,
   departamento,
   provincia,

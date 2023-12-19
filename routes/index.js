@@ -7,7 +7,7 @@ const formulariosRouter=require('./formularios.router');
 const activosFijosRouter=require('./activo-fijo.router');
 const detalleActivoFijoRouter=require('./detalle-activo-fijo.router');
 const armasRouter=require('./arma.router');
-const formularioPerdidaRouter=require('./formulario-perdida.router');
+const formularioPerdidaRouter=require('./formularios-perdida.router');
 
 
 const authRouter = require('./auth.router');
