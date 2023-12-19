@@ -3,20 +3,20 @@
 const { Op } = require('sequelize');
 const { models } = require('../libs/sequelize');
 
-class DetalleFormularioService {
+class FormularioPerdidaService {
 
   constructor() {
 
   }
 
   async create(data) {
-    const newDetalleFormulario = await models.DetalleFormulario.create(data);
-    return newDetalleFormulario;
+    const newFormularioPerdida = await models.FormularioPerdida.create(data);
+    return newFormularioPerdida;
   }
 
   async find(query) {
     const options = {
-      include: [],
+      include: ['arma'],
       where: {}
     }
     const { date_min, date_max } = query;
@@ -26,28 +26,28 @@ class DetalleFormularioService {
         [Op.lte]: date_max
       }
     }
-    const rta = await models.DetalleFormulario.findAll(options);
+    const rta = await models.FormularioPerdida.findAll(options);
     return rta;
   }
   async findOne(id) {
-    const detalleFormulario = await models.DetalleFormulario.findByPk(id, {
-      include: []
+    const FormularioPerdida = await models.FormularioPerdida.findByPk(id, {
+      include: ['arma']
     });
 
-    return detalleFormulario;
+    return FormularioPerdida;
   }
 
   async update(id, changes) {
-    const detalleFormulario = await this.findOne(id);
-    const rta = await detalleFormulario.update(changes);
+    const FormularioPerdida = await this.findOne(id);
+    const rta = await FormularioPerdida.update(changes);
     return rta;
   }
 
   async delete(id) {
-    const detalleFormulario = await this.findOne(id);
-    await detalleFormulario.destroy();
+    const FormularioPerdida = await this.findOne(id);
+    await FormularioPerdida.destroy();
     return { id };
   }
 }
 
-module.exports = DetalleFormularioService;
+module.exports = FormularioPerdidaService;

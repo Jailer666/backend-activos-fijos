@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const {USER_TABLE}=require('./user.model');
+const {ARMA_TABLE}=require('./arma.model');
 
 const FORMULARIO_PERDIDA_TABLE = 'formularios_perdida';
 
@@ -27,18 +27,53 @@ const FormularioPerdidaSchema = {
     allowNull: true,
     type: DataTypes.STRING,
   },
+  condicion:{
+    allowNull: true,
+    type: DataTypes.STRING,
+  },
+  estadoArma:{
+    allowNull: false,
+    type: DataTypes.STRING,
+    field:'estado_arma'
+  },
+  responsable:{
+    allowNull: true,
+    type: DataTypes.STRING,
+  },
+  ciResponsable:{
+    allowNull: true,
+    type: DataTypes.STRING,
+    field:'ci_responsable'
+  },
+  nroInformeResponsable:{
+    allowNull: true,
+    type: DataTypes.STRING,
+    field:'nro_informe_responsable'
+  },
+  situacion:{
+    allowNull: true,
+    type: DataTypes.STRING,
+  },
+  nroCasoInvestigacion:{
+    allowNull: true,
+    type: DataTypes.STRING,
+  },
+  observaciones:{
+    allowNull: true,
+    type: DataTypes.TEXT,
+  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
     field: 'created_at',
     defaultValue: Sequelize.NOW,
   },
-  usuarioId: {
-    field: 'usuario_id',
+  armaId: {
+    field: 'arma_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: USER_TABLE,
+      model: ARMA_TABLE,
       key: 'id',
     },
     onUpdate: 'CASCADE',
@@ -48,8 +83,7 @@ const FormularioPerdidaSchema = {
 
 class FormularioPerdida extends Model {
   static associate(models) {
-    this.belongsTo(models.User, { as: 'user' });
-    this.hasMany(models.DetallePerdida, { as: 'detallesPerdidas', foreignKey: 'formularioPerdidaId' });
+    this.belongsTo(models.Arma, { as: 'arma' });
   }
   static config(sequelize) {
     return {

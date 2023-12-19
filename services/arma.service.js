@@ -1,10 +1,9 @@
 // const { faker } = require('@faker-js/faker');
 // const boom = require('@hapi/boom');
-const {models}=require('../libs/sequelize');
+const { models } = require('../libs/sequelize');
 
 class ArmaService {
-
-  constructor(){
+  constructor() {
     // this.institutions = [];
     // this.generate();
     // this.pool=pool;
@@ -19,12 +18,14 @@ class ArmaService {
   async find() {
     // const query='SELECT *FROM usuarios';
     // const {data}=await sequelize.query(query);
-    const rta = await models.Arma.findAll();
+    const rta = await models.Arma.findAll({
+      include: ['user', 'formulariosPerdida'],
+    });
     return rta;
   }
   async findOne(id) {
-    const arma = await models.Arma.findByPk(id,{
-      include:['detallePerdida']
+    const arma = await models.Arma.findByPk(id, {
+      include: ['user', 'formulariosPerdida'],
     });
 
     return arma;

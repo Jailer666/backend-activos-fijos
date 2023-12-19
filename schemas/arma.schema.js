@@ -19,8 +19,7 @@ const fechaRegActual = Joi.date();
 const mesRegistro= Joi.date();
 const procedencia= Joi.string();
 const tipoAdquisicion= Joi.string();
-const detallePerdida= Joi.string();
-
+const userId = Joi.number().integer();
 
 const createArmaSchema = Joi.object({
   tipoArma,
@@ -42,7 +41,7 @@ const createArmaSchema = Joi.object({
   mesRegistro,
   procedencia,
   tipoAdquisicion,
-  detallePerdida,
+  userId,
 
 });
 
@@ -66,7 +65,6 @@ const updateArmaSchema = Joi.object({
   mesRegistro,
   procedencia,
   tipoAdquisicion,
-  detallePerdida,
 });
 
 const getArmaSchema = Joi.object({

@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { DETALLE_PERDIDA_TABLE } = require('./detalle-perdida.model');
+const { USER_TABLE } = require('./user.model.model');
 const ARMA_TABLE = 'armas';
 
 const ArmaSchema = {
@@ -104,12 +104,12 @@ const ArmaSchema = {
     field: 'created_at',
     defaultValue: Sequelize.NOW,
   },
-  detallePerdidaId: {
-    field: 'detalle_perdida_id',
+  userId: {
+    field: 'user_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: DETALLE_PERDIDA_TABLE,
+      model: USER_TABLE,
       key: 'id',
     },
     onUpdate: 'CASCADE',
@@ -119,7 +119,11 @@ const ArmaSchema = {
 
 class Arma extends Model {
   static associate(models) {
-    this.belongsTo(models.DetallePerdida, { as: 'detallePerdida' });
+    this.belongsTo(models.User, { as: 'user' });
+    this.hasMany(models.FormularioPerdida,{
+      as:'formulariosPerdida',
+      foreignKey:'armaId'
+     })
   }
   static config(sequelize) {
     return {

@@ -4,7 +4,15 @@ const codigo = Joi.string();
 const departamento = Joi.string();
 const provincia = Joi.string();
 const responsable= Joi.string();
-const usuarioId = Joi.integer();
+const condicion= Joi.string();
+const estadoArma= Joi.string();
+const responsables= Joi.string();
+const ciResponsable= Joi.string();
+const nroInformeResponsable= Joi.string();
+const situacion= Joi.string();
+const nroCasoInvestigacion = Joi.string();
+const observaciones= Joi.string();
+const armaId = Joi.integer();
 
 
 const createFormularioPerdidaSchema = Joi.object({
@@ -14,7 +22,15 @@ const createFormularioPerdidaSchema = Joi.object({
   departamento,
   provincia,
   responsable,
-  usuarioId,
+  condicion,
+  estadoArma,
+  responsables,
+  ciResponsable,
+  nroInformeResponsable,
+  situacion,
+  nroCasoInvestigacion,
+  observaciones,
+  armaId,
   
 });
 
@@ -25,7 +41,15 @@ const updateFormularioPerdidaSchema = Joi.object({
   departamento,
   provincia,
   responsable,
-  usuarioId,
+  condicion,
+  estadoArma,
+  responsables,
+  ciResponsable,
+  nroInformeResponsable,
+  situacion,
+  nroCasoInvestigacion,
+  observaciones,
+  armaId,
   
 });
 
