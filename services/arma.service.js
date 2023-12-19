@@ -20,6 +20,7 @@ class ArmaService {
     // const {data}=await sequelize.query(query);
     const rta = await models.Arma.findAll({
       include: ['user', 'formulariosPerdida'],
+      order: [['id', 'ASC']],
     });
     return rta;
   }

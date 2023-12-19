@@ -7,7 +7,7 @@ const { getArmaSchema,createArmaSchema,updateArmaSchema } = require('../schemas/
 const router = express.Router();
 const service = new ArmaService();
 
-router.get('/',validatorHandler('query'),async (req,res,next)=>{
+router.get('/',async (req,res,next)=>{
   try{
     const Arma = await service.find(req.query);
     res.json(Arma);
